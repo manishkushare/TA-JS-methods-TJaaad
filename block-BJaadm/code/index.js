@@ -110,28 +110,30 @@ let malePersons = persons.reduce((acc,cv)=> {
 },[])
 // Find the sum of all grades and store in gradeTotal
 let gradeTotal = persons.reduce((acc,cv)=> {
-  acc += cv.grade;
-  return acc;
+  return acc + cv.grade;
+  
 },0)
 // Find the average grade
 let averageGrade = gradeTotal/persons.length;
 // Find the average grade of male
-let gradeOfMale = 
-persons.reduce((acc,cv)=> {
-  if(cv.sex === "M"){
-    acc += cv.grade;
-  }
-  return acc;
-},0);
+// let gradeOfMale = 
+// persons.reduce((acc,cv)=> {
+//   if(cv.sex === "M"){
+//     acc += cv.grade;
+//   }
+//   return acc;
+// },0);
+let gradeOfMale = persons.filter(person => person.sex === "M");
+let averageGradeOfMale = gradeOfMale.reduce((acc,cv) => {
+  return acc + cv.grade;
+},0)/gradeOfMale.length;
+
 
 // Find the average grade of female
-let gradeOfFemale = 
-persons.reduce((acc,cv)=> {
-  if(cv.sex === "F"){
-    acc += cv.grade;
-  }
-  return acc;
-},0);
+let gradeOfFemale = persons.filter(person => person.sex === "F");
+let averageGradeOfFemale = gradeOfFemale.reduce((acc,cv) => {
+  return acc + cv.grade;
+},0)/gradeOfFemale.length;
 
 // Find the highest grade
 let highestGrade = persons.reduce((acc,cv,ci)=> {
