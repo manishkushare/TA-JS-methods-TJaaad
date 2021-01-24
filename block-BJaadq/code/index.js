@@ -2,34 +2,91 @@
 
 function countAllPeople() {
   // your code goes here
-}
+ return got.houses.reduce((acc,cv)=>{
+    // console.log(cv);
+    acc += cv.people.length;
+    // console.log(acc);
+    return acc;
+  },0)
+};
 
 function peopleByHouses() {
   // your code goes here
+  return got.houses.reduce((acc,cv)=>{
+    acc[cv.name] = cv.people.length;
+    return acc;
+  },{})
 }
 
 function everyone() {
   // your code goes here
+return   got.houses.map(house => {
+    return house.people.reduce((acc,cv)=>{
+      acc.push(cv.name);
+      return acc;
+    },[]);
+  }).flat(Infinity)
 }
 
 function nameWithS() {
   // your code goes here
+  return got.houses.map(house => {
+    return house.people.reduce((acc,cv)=> {
+      if(cv.name.toLowerCase().includes("s")){
+        acc.push(cv.name);
+      }
+      return acc;
+    },[])
+  }).flat()
 }
 
 function nameWithA() {
   // your code goes here
+  return got.houses.map(house => {
+    return house.people.reduce((acc,cv)=> {
+      if(cv.name.toLowerCase().includes("a")){
+        acc.push(cv.name);
+      }
+      return acc;
+    },[])
+  }).flat()
 }
 
 function surnameWithS() {
   // your code goes here
+  return got.houses.map(house => {
+    return house.people.reduce((acc,cv)=> {
+      if(cv.name.split(" ")[cv.name.split(" ").length-1].startsWith("S")){
+        acc.push(cv.name);
+      }
+      return acc;
+    },[])
+  }).flat()
+
 }
 
 function surnameWithA() {
   // your code goes here
+  return got.houses.map(house => {
+    return house.people.reduce((acc,cv)=> {
+      if(cv.name.split(" ")[cv.name.split(" ").length-1].startsWith("A")){
+        acc.push(cv.name);
+      }
+      return acc;
+    },[])
+  }).flat()
+  
 }
 
 function peopleNameOfAllHouses() {
   // your code goes here
+  return got.houses.reduce((acc,cv)=>{
+    acc[cv.name] = cv.people.reduce((acc,cv)=> {
+      acc.push(cv.name);
+      return acc;
+    },[])
+    return acc;
+  },{})
 }
 
 // Testing your result after writing your function
@@ -48,7 +105,7 @@ console.log(nameWithS(), 'with s');
 // Output should be
 // ["Eddard "Ned" Stark", "Benjen Stark", "Robb Stark", "Sansa Stark", "Arya Stark", "Brandon "Bran" Stark", "Rickon Stark", "Jon Snow", "Tywin Lannister", "Tyrion Lannister", "Jaime Lannister", "Queen Cersei (Lannister) Baratheon", "Stannis Baratheon", "Daenerys Targaryen", "Viserys Targaryen", "Loras Tyrell", "Catelyn (Tully) Stark", "Lysa (Tully) Arryn"]
 
-console.log(nameWithA());
+console.log(nameWithA(),"a");
 // Output should be
 // ["Eddard Stark", "Benjen Stark", "Robb Stark", "Sansa Stark", "Arya Stark", "Brandon Stark", "Rickon Stark", "Tywin Lannister", "Tyrion Lannister", "Jaime Lannister", "Cersei Baratheon", "Robert Baratheon", "Stannis Baratheon", "Renly Baratheon", "Joffrey Baratheon", "Tommen Baratheon", "Myrcella Baratheon", "Daenerys Targaryen", "Viserys Targaryen", "Balon Greyjoy", "Yara Greyjoy", "Margaery Baratheon", "Loras Tyrell", "Catelyn Stark", "Lysa Arryn", "Olenna Tyrell", "Walder Frey", "Jon Arryn", "Khal Drogo"]
 

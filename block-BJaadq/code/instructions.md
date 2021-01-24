@@ -14,7 +14,7 @@ Note: Solve all the problems without using the reduce method.
 
 - 5. Write a function called `nameWithA` which returns a array of names of all the people in `got` variable whose name includes `a` or `A`.
 
-- 6. Write a function called `surnameWithS` which returns a array of names of all the people in `got` variable whoes surname is starting with `S`(capital s).
+- 6. Write a function called `surnameWitS` which returns a array of names of all the people in `got` variable whoes surname is starting with `S`(capital s).
 
 - 7. Write a function called `surnameWithA` which returns a array of names of all the people in `got` variable whoes surname is starting with `A`(capital a).
 
