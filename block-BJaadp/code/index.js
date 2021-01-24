@@ -101,16 +101,16 @@ Output:
 {banana: 2, cherry: 3, orange: 3, apple: 2, fig: 1}
 */
 // let fruitsObj = new Object();
-let fruitObj = new Object();
-fruitBasket.reduce((acc,cv)=>{
-  if(fruitObj.hasOwnProperty(cv)){
-    fruitObj[cv] += 1;
+// let fruitObj = new Object();
+let fruitObj = fruitBasket.reduce((acc,cv)=>{
+  if(acc.hasOwnProperty(cv)){
+    acc[cv] += 1;
   }
   else {
 
-    fruitObj[cv] = 1;
+    acc[cv] = 1;
   }
-  return fruitObj;
+  return acc;
 },{})
 /* 
 
@@ -123,9 +123,9 @@ Output:
 */
 let fruitBasketArray = Object.keys(fruitObj).reduce((acc,cv) => {
   console.log(cv);
-  let arr = new Array();
-  arr.push(cv,fruitObj[cv]);
-  acc.push(arr);
+  // let arr = new Array();
+  acc = acc.concat([[cv,fruitObj[cv]]]);
+  // acc.push(arr);
   return acc;
 },[]);
 
@@ -193,28 +193,28 @@ EXAMPLE:
 
   ...
 */
-function operation(num){
-  return pipeline.reduce((acc,cv)=>{
-    console.log(acc);
-    console.log(cv);
-    if(cv === "increment"){
-      acc++;
-    }
-    if(cv === "decrement"){
-      acc--;
-    }
-    if(cv === "double"){
-      acc*= 2;
-    }
-    if(cv === "triple"){
-      acc *= 3;
-    }
-    if(cv === "half"){
-      acc /= 2;
-    }
-    return acc;
-  },num)
-}
+// function operation(num){
+//   return pipeline.reduce((acc,cv)=>{
+//     console.log(acc);
+//     console.log(cv);
+//     if(cv === "increment"){
+//       acc++;
+//     }
+//     if(cv === "decrement"){
+//       acc--;
+//     }
+//     if(cv === "double"){
+//       acc*= 2;
+//     }
+//     if(cv === "triple"){
+//       acc *= 3;
+//     }
+//     if(cv === "half"){
+//       acc /= 2;
+//     }
+//     return acc;
+//   },num)
+// }
 
 let pipeline2 = [
   increment,
@@ -230,6 +230,13 @@ let pipeline2 = [
   triple,
 ];
 
+let a = pipeline2.reduce((acc,cv) => {
+  console.log(cv);
+  // console.log("before:",acc);
+  acc = cv(acc);
+  console.log(acc);
+  return acc;
+},8);
 // Find the output using pipeline2 the initial value if 8
 
 
@@ -240,35 +247,35 @@ function decrement(num){
   return --num;
 }
 function double(num){
-  return num*2;
+  return num*=2;
 }
 function triple(num){
-  return num*3;
+  return num*=3;
 }
 function half(num){
-  return num/2;
+  return num/=2;
 }
-function initialValue(number){
+// function initialValue(number){
 
 
-  return pipeline2.reduce((acc,cv)=>{
-    console.log(cv)
-    if(cv === "increment"){
-      return increment(acc);
-    }
-    if(cv === "decrement"){
-      return  decrement(acc);
-    }
-    if(cv === "double"){
-      acc= double(acc);
-    }
-    if(cv === "triple"){
-      acc = triple(acc);
-    }
-    if(cv === "half"){
-      acc = half(acc)
-    }
-    // return acc;
-  },number);
+//   return pipeline2.reduce((acc,cv)=>{
+//     console.log(cv)
+//     if(cv === "increment"){
+//       return increment(acc);
+//     }
+//     if(cv === "decrement"){
+//       return  decrement(acc);
+//     }
+//     if(cv === "double"){
+//       acc= double(acc);
+//     }
+//     if(cv === "triple"){
+//       acc = triple(acc);
+//     }
+//     if(cv === "half"){
+//       acc = half(acc)
+//     }
+//     // return acc  ;
+//   },number);
 
-}
+// }
