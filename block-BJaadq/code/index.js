@@ -2,42 +2,71 @@
 
 function countAllPeople() {
   // your code goes here
- return got.houses.reduce((acc,cv)=>{
-    // console.log(cv);
-    acc += cv.people.length;
-    // console.log(acc);
-    return acc;
-  },0)
-};
+//  return got.houses.reduce((acc,cv)=>{
+//     acc += cv.people.length;
+//     return acc ;
+//   },0);
+let totalPeople = 0;
+got.houses.forEach(house => {
+  totalPeople = totalPeople + house.people.length;
+  // return totalPeople;
+})
+return totalPeople;
+}
 
 function peopleByHouses() {
   // your code goes here
-  return got.houses.reduce((acc,cv)=>{
-    acc[cv.name] = cv.people.length;
-    return acc;
-  },{})
+  // return got.houses.reduce((acc,cv)=>{
+  //   acc[cv.name] = cv.people.length;
+  //   return acc;
+  // },{})
+
+  let peopleObj = {};
+  got.houses.forEach(house => {
+    peopleObj[house.name] = house.people.length;
+  });
+  return peopleObj;
 }
 
 function everyone() {
   // your code goes here
-return   got.houses.map(house => {
-    return house.people.reduce((acc,cv)=>{
-      acc.push(cv.name);
-      return acc;
-    },[]);
-  }).flat(Infinity)
+// return   got.houses.map(house => {
+//     return house.people.reduce((acc,cv)=>{
+//       acc.push(cv.name);
+//       return acc;
+//     },[]);
+//   }).flat(Infinity);
+let final = [];
+got.houses.forEach(house => {
+  let peopleName = house.people.map(p => p.name);
+  final = final.concat(peopleName);
+})
+return final;
 }
 
 function nameWithS() {
   // your code goes here
-  return got.houses.map(house => {
-    return house.people.reduce((acc,cv)=> {
-      if(cv.name.toLowerCase().includes("s")){
-        acc.push(cv.name);
-      }
-      return acc;
-    },[])
-  }).flat()
+  // return got.houses.map(house => {
+  //   return house.people.reduce((acc,cv)=> {
+  //     if(cv.name.toLowerCase().includes("s")){
+  //       acc.push(cv.name);
+  //     }
+  //     return acc;
+  //   },[])
+  // }).flat()
+//   let final = [];
+// got.houses.map(house => {
+//   let peopleName = house.people.filter(p => {
+//     if(p.name.toLowerCase().includes("s")){
+//       return p.name;
+//     }
+//   });
+//   console.log(peopleName)
+//   final = final.concat(peopleName);
+// })
+// return final;
+let allPeople = everyone();
+return allPeople.filter(p => p.toLowerCase().includes("s"));
 }
 
 function nameWithA() {
