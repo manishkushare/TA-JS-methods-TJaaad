@@ -2,34 +2,92 @@
 
 function countAllPeople() {
   // your code goes here
+  let totalPeople = 0;
+  got.houses.forEach(house => {
+    totalPeople += house.people.length;
+  })
+  return totalPeople;
 }
 
 function peopleByHouses() {
   // your code goes here
+  let final = {};
+  got.houses.forEach(house => {
+    final[house.name] = house.people.length;
+  })
+  return final;
 }
 
 function everyone() {
   // your code goes here
+  let final = [];
+  got.houses.forEach(house => {
+   let peopleName =  house.people.map(p => p.name);
+   final.push(peopleName);
+  })
+return final.flat();
 }
 
 function nameWithS() {
   // your code goes here
+  let final  = [];
+  got.houses.forEach(house => {
+   let peopleName =  house.people.map(p => p.name);
+    final.push(peopleName);
+
+  });
+  return final.flat().filter(name => {
+    if(name.toLowerCase().includes("s")){
+      return name
+    }
+  })
 }
 
 function nameWithA() {
   // your code goes here
+  let final  = [];
+  got.houses.forEach(house => {
+    let peopleName = house.people.map(p => p.name);
+    final.push(peopleName);
+  })
+  return final.flat().filter(name => {
+    if(name.toLowerCase().includes("a")){
+      return name;
+    }
+  })
 }
 
 function surnameWithS() {
   // your code goes here
+  let peopleArray = everyone();
+  console.log(peopleArray);
+  return  peopleArray.filter(name => {
+    let splittedName = name.split(" ");
+    if(splittedName[splittedName.length-1].startsWith("S")){
+      return splittedName.join(" ");
+    }
+  })
 }
 
 function surnameWithA() {
   // your code goes here
+  let peopleArray = everyone();
+  return peopleArray.filter(name => {
+    let splittedName = name.split(" ");
+    if(splittedName[splittedName.length-1].startsWith("A")){
+      return splittedName.join();
+    }
+  })
+  
 }
 
 function peopleNameOfAllHouses() {
   // your code goes here
+  let final  = {}
+  got.houses.forEach(house => {
+    final[house.name] = house.people.map(p => p.name);
+  })
+  return final;
 }
 
 // Testing your result after writing your function
