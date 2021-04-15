@@ -27,15 +27,15 @@ strings.splice(strings.length-2,2);
 // - Remove the first word in the array (strings)
 strings.shift();
 // - Find all the words that contain 'is' use string method 'includes'
-console.log(strings.includes("is"));
+console.log(strings.includes("is"));  
 // - Find all the words that contain 'is' use string method 'indexOf'
-
+strings.indexOf("is");
 // - Check if all the numbers in numbers array are divisible by three use array method (every)
 let divisbleBThree = numbers.every(num => num % 3 == 0);
 // -  Sort Array from smallest to largest
-// numbers.sort((a,b) => {
-//   return a-b;
-// })
+numbers.sort((a,b) => {
+  return a-b;
+})
 console.log("sorted numbers :",numbers)
 // - Remove the last word in strings
 console.log(strings.pop());
@@ -77,6 +77,7 @@ let replaceString = strings.reduce((acc,cv,ci,array)=> {
   array[ci] = cv.length;
   return array;
 },[])
+console.log("replaceString:",replaceString)
 // - Find the sum of the length of words using above question
 let sumOfLengthOfWords = replaceString.reduce((acc,cv,ci,array) => {
   return acc += cv;
