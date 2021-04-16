@@ -161,11 +161,17 @@ let sumArray1 = numbers.reduce((acc, cv) => {
   return acc += cv;
 }, 0)
 //- Write a function averageNumbers that receives an array of numbers and calculate the average of the numbers
-let averageArray = numbers.reduce((acc, cv) => {
-  acc += cv;
+let averageNumbers = numbers.reduce((acc,cv)=> {
+  acc +=cv
   return acc;
-}, 0)
-let averageOfNumbers = averageArray / numbers.length;
+},0)/numbers.length;
+
+
+// let averageArray = numbers.reduce((acc, cv) => {
+//   acc += cv;
+//   return acc;
+// }, 0)
+// let averageOfNumbers = averageArray / numbers.length;
 
 
 let strings = [
