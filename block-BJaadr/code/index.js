@@ -1,72 +1,137 @@
 // NOTE: You can only use the (reduce) array method to solve this exercise:
 
-function countAllPeople() {
-  // your code goes here
-  let totalPeople = 0;
-  got.houses.forEach(house => {
-    totalPeople += house.people.length;
-  })
-  return totalPeople;
+// function countAllPeople() {
+//   // your code goes here
+//   let totalPeople = 0;
+//   got.houses.forEach(house => {
+//     totalPeople += house.people.length;
+//   })
+//   return totalPeople;
+// }
+
+function countAllPeople(){
+  return got.houses.reduce((acc,cv)=> {
+    acc +=  cv.people.length;
+    return acc;
+  },0)
+  
 }
 
-function peopleByHouses() {
-  // your code goes here
-  let final = {};
-  got.houses.forEach(house => {
-    final[house.name] = house.people.length;
-  })
-  return final;
+function peopleByHouses(){
+  return got.houses.reduce((acc,cv)=> {
+    acc[cv.name] = cv.people.length;
+    return acc;
+  },{})
 }
 
-function everyone() {
-  // your code goes here
-  let final = [];
-  got.houses.forEach(house => {
-   let peopleName =  house.people.map(p => p.name);
-   final.push(peopleName);
-  })
-return final.flat();
+// function peopleByHouses() {
+//   // your code goes here
+//   let final = {};
+//   got.houses.forEach(house => {
+//     final[house.name] = house.people.length;
+//   })
+//   return final;
+// }
+
+function everyone(){
+  return got.houses.reduce((acc,house) => {
+    acc.push(house.people.reduce((acc,p)=>{
+      acc.push(p.name);
+      return acc;
+    },[]))
+    return acc;
+  },[]).flat(Infinity)
 }
 
-function nameWithS() {
-  // your code goes here
-  let final  = [];
-  got.houses.forEach(house => {
-   let peopleName =  house.people.map(p => p.name);
-    final.push(peopleName);
 
-  });
-  return final.flat().filter(name => {
-    if(name.toLowerCase().includes("s")){
-      return name
-    }
-  })
+// function everyone() {
+//   // your code goes here
+//   let final = [];
+//   got.houses.forEach(house => {
+//    let peopleName =  house.people.map(p => p.name);
+//    final.push(peopleName);
+//   })
+// return final.flat();
+// }
+
+// function nameWithS() {
+//   // your code goes here
+//   let final  = [];
+//   got.houses.forEach(house => {
+//    let peopleName =  house.people.map(p => p.name);
+//     final.push(peopleName);
+
+//   });
+//   return final.flat().filter(name => {
+//     if(name.toLowerCase().includes("s")){
+//       return name
+//     }
+//   })
+// }
+
+function nameWithS(){
+  return got.houses.reduce((acc,house)=>{
+    acc.push(house.people.reduce((acc,cv)=> {
+      if(cv.name.toLowerCase().includes("s")){
+        acc.push(cv.name);
+      }
+      return acc;
+    },[]))
+    return acc;
+  },[]).flat(Infinity)
+
 }
 
-function nameWithA() {
-  // your code goes here
-  let final  = [];
-  got.houses.forEach(house => {
-    let peopleName = house.people.map(p => p.name);
-    final.push(peopleName);
-  })
-  return final.flat().filter(name => {
-    if(name.toLowerCase().includes("a")){
-      return name;
-    }
-  })
+function nameWithA(){
+  return got.houses.reduce((acc,house)=>{
+    acc.push(house.people.reduce((acc,cv)=>{
+      if(cv.name.toLowerCase().includes("s")){
+        acc.push(cv.name);
+      }
+      return acc;
+    },[]))
+    return acc;
+  },[]).flat(Infinity);
 }
 
-function surnameWithS() {
-  // your code goes here
-  let peopleArray = everyone();
-  console.log(peopleArray);
-  return  peopleArray.filter(name => {
-    let splittedName = name.split(" ");
-    if(splittedName[splittedName.length-1].startsWith("S")){
-      return splittedName.join(" ");
-    }
-  })
+
+// function nameWithA() {
+//   // your code goes here
+//   let final  = [];
+//   got.houses.forEach(house => {
+//     let peopleName = house.people.map(p => p.name);
+//     final.push(peopleName);
+//   })
+//   return final.flat().filter(name => {
+//     if(name.toLowerCase().includes("a")){
+//       return name;
+//     }
+//   })
+// }
+
+// function surnameWithS() {
+//   // your code goes here
+//   let peopleArray = everyone();
+//   console.log(peopleArray);
+//   return  peopleArray.filter(name => {
+//     let splittedName = name.split(" ");
+//     if(splittedName[splittedName.length-1].startsWith("S")){
+//       return splittedName.join(" ");
+//     }
+//   })
+// }
+
+function surnameWithS(){
+  return got.houses.reduce((acc,house)=>{
+    acc.push(house.people.reduce((acc,cv)=>{
+      if(cv.name.split(" ")[1].startsWith("S")){
+        acc.push(cv.name);
+      }
+      return acc;
+    },[]))
+    return acc;
+  },[]).flat(Infinity)
+
 }
 
 function surnameWithA() {
@@ -81,13 +146,24 @@ function surnameWithA() {
   
 }
 
-function peopleNameOfAllHouses() {
-  // your code goes here
-  let final  = {}
-  got.houses.forEach(house => {
-    final[house.name] = house.people.map(p => p.name);
-  })
-  return final;
+// function peopleNameOfAllHouses() {
+//   // your code goes here
+//   let final  = {}
+//   got.houses.forEach(house => {
+//     final[house.name] = house.people.map(p => p.name);
+//   })
+//   return final;
+// }
+
+function peopleNameOfAllHouses(){
+  return got.houses.reduce((acc,house)=>{
+    acc[house.name] = house.people.reduce((acc,cv)=>{
+      acc.push(cv.name);
+      return acc;
+
+    },[])
+    return acc;
+  },{})
 }
 
 // Testing your result after writing your function
