@@ -16,10 +16,19 @@ let persons = [
 // NOTE: Use reduce method whereever you can to solve this exercise:
 
 // Find the average grade
-console.log(persons.length)
-let averageGrade = persons.reduce((acc,cv)=> {
-  return acc+cv.grade;
+const averageGrade =  persons.reduce((acc,cv)=> {
+  return acc += cv.grade;
+  
 },0)/persons.length;
+
+console.log("average grade:",averageGrade);
+
+
+
+// console.log(persons.length)
+// let averageGrade = persons.reduce((acc,cv)=> {
+//   return acc+cv.grade;
+// },0)/persons.length;
 // Find the average grade of male
 let gradeOfMale = persons.filter(person => {
   if(person.sex === "M"){
@@ -101,17 +110,30 @@ Output:
 {banana: 2, cherry: 3, orange: 3, apple: 2, fig: 1}
 */
 // let fruitsObj = new Object();
-// let fruitObj = new Object();
-let fruitObj = fruitBasket.reduce((acc,cv)=>{
+
+const arrayOfFruitsWithValueOfOccurance = fruitBasket.reduce((acc,cv)=> {
   if(acc.hasOwnProperty(cv)){
-    acc[cv] += 1;
+    acc[cv] += 1; 
   }
   else {
-
-    acc[cv] = 1;
+     acc[cv] = 1;
   }
   return acc;
 },{})
+
+console.log("here is the array with fruits and its occurance:",arrayOfFruitsWithValueOfOccurance)
+
+// let fruitObj = new Object();
+// let fruitObj = fruitBasket.reduce((acc,cv)=>{
+//   if(acc.hasOwnProperty(cv)){
+//     acc[cv] += 1;
+//   }
+//   else {
+
+//     acc[cv] = 1;
+//   }
+//   return acc;
+// },{})
 /* 
 
 Use the fruitBasket array to create an array of array. Each array will contain two values name of fruit and number of times
@@ -120,14 +142,17 @@ that fruit appeared. Use the variable defined above (fruitsObj). To get all the 
 Output: 
 
 [['banana', 2], ['cherry', 3], ['orange', 3], ['apple', 2], ['fig', 1]]
+
 */
-let fruitBasketArray = Object.keys(fruitObj).reduce((acc,cv) => {
-  console.log(cv);
-  // let arr = new Array();
-  acc = acc.concat([[cv,fruitObj[cv]]]);
-  // acc.push(arr);
-  return acc;
-},[]);
+
+
+// let fruitBasketArray = Object.keys(fruitObj).reduce((acc,cv) => {
+//   console.log(cv);
+//   // let arr = new Array();
+//   acc = acc.concat([[cv,fruitObj[cv]]]);
+//   // acc.push(arr);
+//   return acc;
+// },[]);
 
 const data = [
   [1, 2, 3],
@@ -153,7 +178,8 @@ const dataTwo = [
 // Using reduce flat dataTwo array
 function flatten(arr) {
    return arr.reduce((acc, cv) => {
-    console.log(cv);
+    console.log("I am watching you:",cv);
+    console.log("acc , am keeoing my eye on you:", acc);
     return Array.isArray(cv) ? acc.concat(flatten(cv)) : acc.concat(cv);
 
   },[]);
