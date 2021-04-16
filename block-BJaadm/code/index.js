@@ -14,15 +14,28 @@ let persons = [
 ];
 
 // Create an array peopleName and store value of sex key from persons array
+
 let peopleName = persons.reduce((acc,cv)=> {
   acc.push(cv.name);
   return acc;
 },[])
+console.log("hey this gender of all peropleL",peopleName)
+
+// let peopleName = persons.reduce((acc,cv)=> {
+//   acc.push(cv.name);
+//   return acc;
+// },[])
 // Create an array peopleGrade and store the value of grade key from persons array
 let peopleGrade = persons.reduce((acc,cv)=> {
-  acc.push(cv.grade);
+  acc.push(`${cv.name} your grade is: ${cv.grade}`);
   return acc;
-},[]);
+}
+,[]);
+console.log("Hey fellas, those are your grades:",peopleGrade)
+// let peopleGrade = persons.reduce((acc,cv)=> {
+//   acc.push(cv.grade);
+//   return acc;
+// },[]);
 
 // Create an array peopleSex and store the value of sex key from persons array
 let peopleSex = persons.reduce((acc,cv)=> {
@@ -30,11 +43,20 @@ let peopleSex = persons.reduce((acc,cv)=> {
   return acc;
 },[])
 // Log the filtered named of people in peopleName that starts with 'J' or 'P'
-peopleName.filter(name => {
-  if(name.startsWith("J" || "P")){
-    console.log(name);
-  }
+let filtererdNameStartWithJAndSP = peopleName.filter(name => {
+  console.log("name:",name);
+   if(name.startsWith("J") || name.startsWith("P")){
+     console.log(name);
+     return name;
+   }
 })
+console.log("heya! :",filtererdNameStartWithJAndSP);
+
+// peopleName.filter(name => {
+//   if(name.startsWith("J" || "P")){
+//     console.log(name);
+//   }
+// })
 // Log the length of filtered named of people in peopleName that starts with 'A' and 'C'
 peopleName.filter(name => {
   if(name.startsWith("A") || name.startsWith("C")){
@@ -136,30 +158,60 @@ let averageGradeOfFemale = gradeOfFemale.reduce((acc,cv) => {
 },0)/gradeOfFemale.length;
 
 // Find the highest grade
-let highestGrade = persons.reduce((acc,cv,ci)=> {
+
+let highestGrade = persons.reduce((acc,cv)=>{
   if(cv.grade > acc){
-    console.log("inside if :",acc);
-    return cv.grade;
+    acc = cv.grade;
   }
   else {
-    console.log("inside else :",acc)
-    return acc;
+    acc;
   }
-},0);
-// Find the highest grade in male
-let highestGradeInMale = persons.filter(person => {
-  if(person.sex ==="M"){
-    return person;
-  }
-})
-.reduce((acc,cv) => {
-  if(cv.grade > acc){
-    return cv.grade;
-  }
-  else {
-    return acc;
-  }    
+  return acc;
 },0)
+console.log("You are the topper, congo ! dude :",highestGrade);
+
+
+
+
+// let highestGrade = persons.reduce((acc,cv,ci)=> {
+//   if(cv.grade > acc){
+//     console.log("inside if :",acc);
+//     return cv.grade;
+//   }
+//   else {
+//     console.log("inside else :",acc)
+//     return acc;
+//   }
+// },0);
+// Find the highest grade in male
+
+let highestGradeInMale = persons.filter(person => {
+  if(person.sex === "M"){
+    return person
+  }
+}).reduce((acc,cv)=> {
+  if(cv.grade > acc){
+    return cv.grade
+  }
+  else {
+    return acc
+  }
+},0)
+console.log("you are topper amongst boys :",highestGradeInMale);
+
+// let highestGradeInMale = persons.filter(person => {
+//   if(person.sex ==="M"){
+//     return person;
+//   }
+// })
+// .reduce((acc,cv) => {
+//   if(cv.grade > acc){
+//     return cv.grade;
+//   }
+//   else {
+//     return acc;
+//   }    
+// },0)
 // Find the highest grade in female
 let highestGradeInFemale = persons.filter(person => {
   if(person.sex === "F"){
